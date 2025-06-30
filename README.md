@@ -12,8 +12,8 @@ Base model: [Extreme-Parkour](https://extreme-parkour.github.io/)
 
 * [ ] Distillation
 
-[ ] Debugging policy by sim2sim (mujoco)
+* [ ] Debugging policy by sim2sim (mujoco)
 
-[ ] Deploying policy in real world 
+* [ ] Deploying policy in real world 
 
-[ ] Opening total codes 
+* [ ] Opening total codes 
