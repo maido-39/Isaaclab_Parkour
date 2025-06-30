@@ -8,12 +8,12 @@ Base model: [Extreme-Parkour](https://extreme-parkour.github.io/)
 
 ### TODO list
 
-[x] Training Teacher model  (from 2025.06.24 ~  )
+[ ] Training Teacher model  (from 2025.06.24 ~  )
 
-[o] Distillation
+[ ] Distillation
 
-[x] Debugging policy by sim2sim (mujoco)
+[ ] Debugging policy by sim2sim (mujoco)
 
-[x] Deploying policy in real world 
+[ ] Deploying policy in real world 
 
-[x] Opening total codes 
+[ ] Opening total codes 
