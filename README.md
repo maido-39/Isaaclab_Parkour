@@ -3,10 +3,17 @@ Isaaclab based Parkour locomotion
 
 Base model: [Extreme-Parkour](https://extreme-parkour.github.io/)
 
-
-## Legged Gym Parkour
-![Screenshot from 2025-06-24 23-03-30.png](attachment:c49cc146-6cc1-49d8-adf4-1230197d8cb6:Screenshot_from_2025-06-24_23-03-30.png)
+![Screenshot from 2025-07-01 04-12-24](https://github.com/user-attachments/assets/32287c1b-adae-4884-9e75-4a0c63a36ba2)
 
 
-## Isaac Lab Parkour
-![Screenshot from 2025-06-24 23-01-53.png](attachment:acf555df-fae4-41f0-bfbf-055325c020cb:Screenshot_from_2025-06-24_23-01-53.png)
+### TODO list
+
+[] Training Teacher model  (from 2025.06.24 ~  )
+
+[] Distillation
+
+[] Debugging policy by sim2sim (mujoco)
+
+[] Deploying policy in real world 
+
+[] Opening total codes 
