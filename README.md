@@ -5,9 +5,8 @@ Base model: [Extreme-Parkour](https://extreme-parkour.github.io/)
 
 
 ## Legged Gym Parkour
-https://github.com/user-attachments/assets/cbca8ba1-2756-47ed-b44e-f752a538bd6d
+![Screenshot from 2025-06-24 23-03-30.png](attachment:c49cc146-6cc1-49d8-adf4-1230197d8cb6:Screenshot_from_2025-06-24_23-03-30.png)
 
 
 ## Isaac Lab Parkour
-https://github.com/user-attachments/assets/e4e3317a-2079-44d9-82eb-fdc199045554
-
+![Screenshot from 2025-06-24 23-01-53.png](attachment:acf555df-fae4-41f0-bfbf-055325c020cb:Screenshot_from_2025-06-24_23-01-53.png)
