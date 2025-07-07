@@ -13,7 +13,7 @@ Base model: [Extreme-Parkour](https://extreme-parkour.github.io/)
 
 ### TODO list
 
-* [O] Training Teacher model  (from 2025.06.24 ~ to 2025.07.07 )
+* [x] Training Teacher model  (from 2025.06.24 ~ to 2025.07.07 )
 
 * [ ] Distillation
 
