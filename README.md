@@ -20,7 +20,7 @@ https://github.com/user-attachments/assets/f35498a2-69aa-44bb-8000-40b605b5d42f
 
 * [x] Training Teacher model  (from 2025.06.24 ~ to 2025.07.07 )
 
-* [ ] Distillation
+* [ ] Distillation (from 2025.07.15 ~ )
 
 * [ ] Debugging policy by sim2sim (mujoco)
 
