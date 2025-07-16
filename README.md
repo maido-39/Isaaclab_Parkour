@@ -22,7 +22,7 @@ https://github.com/user-attachments/assets/f35498a2-69aa-44bb-8000-40b605b5d42f
 
 * [ ] Distillation (from 2025.07.15 ~ )
 
-* [x] Deploy policy in IsaacLab by demo: code refer [site](https://isaac-sim.github.io/IsaacLab/main/source/overview/showroom.html)  (from 2025.07.15 ~ )
+* [x] Deploy policy in IsaacLab by demo: code refer [site](https://isaac-sim.github.io/IsaacLab/main/source/overview/showroom.html)  (from 2025.07.15 ~ 2025.07.16)
 
 * [ ] Deploy policy by sim2sim (mujoco)
 
