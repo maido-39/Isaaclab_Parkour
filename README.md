@@ -7,11 +7,7 @@ Base model: [Extreme-Parkour](https://extreme-parkour.github.io/)
 ### Teacher model test (at training iter 10%)
 
 
-
-https://github.com/user-attachments/assets/889e92e7-bc9f-491e-8d92-4b3c5d9fd0f7
-
-
-
+https://github.com/user-attachments/assets/e8db9619-bb54-403c-a7de-6c3391d101bd
 
 
 ### env visualize 
