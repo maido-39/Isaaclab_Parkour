@@ -19,11 +19,11 @@ https://github.com/user-attachments/assets/e8db9619-bb54-403c-a7de-6c3391d101bd
 
 * [x] Training Teacher model  (from 2025.06.24 ~ to 2025.07.07 )
 
-* [ ] Distillation (from 2025.07.15 ~ )
+* [x] Distillation (from 2025.07.15 ~ to 2025.08.18 )
 
 * [x] Deploying policy in IsaacLab by demo: code refer [site](https://isaac-sim.github.io/IsaacLab/main/source/overview/showroom.html)  (from 2025.07.15 ~ 2025.07.16)
 
-* [ ] Deploying policy by sim2sim (mujoco)
+* [x] Deploying policy by sim2sim (mujoco)
 
 * [ ] Deploying policy in real world 
 
