@@ -3,8 +3,7 @@ Isaaclab based Parkour locomotion
 
 Base model: [Extreme-Parkour](https://extreme-parkour.github.io/)
 
-https://extreme-parkour.github.io/resources/Full/method.mp4
-
+https://github.com/user-attachments/assets/aa9f7ece-83c1-404f-be50-6ae6a3ba3530
 
 
 ### Teacher model test 
