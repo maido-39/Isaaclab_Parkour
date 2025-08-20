@@ -22,6 +22,11 @@ https://github.com/user-attachments/assets/82a5cecb-ffbf-4a46-8504-79188a147c40
 ![Screenshot from 2025-07-06 16-27-36](https://github.com/user-attachments/assets/9baa9a6c-63db-4703-ac95-f067c8f6e287)
 
 
+### GO2 Demo in IsaacLab
+
+[Screencast from 2025년 08월 20일 18시 55분 01초.webm](https://github.com/user-attachments/assets/4fb1ba4b-1780-49b0-a739-bff0b95d9b66)
+
+
 ### TODO list
 
 * [x] Training Teacher model  (from 2025.06.24 ~ to 2025.07.07 )
