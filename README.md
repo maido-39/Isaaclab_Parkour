@@ -141,7 +141,7 @@ see this [repo](https://github.com/CAI23sbP/go2_parkour_deploy)
 
 * [x] Opening code for deploying policy in IsaacLab by demo: code refer [site](https://isaac-sim.github.io/IsaacLab/main/source/overview/showroom.html)  
 
-* [ ] Opening code for deploying policy by sim2sim (mujoco)
+* [x] Opening code for deploying policy by sim2sim (mujoco)
 
 * [ ] Opening code for deploying policy in real world 
 
