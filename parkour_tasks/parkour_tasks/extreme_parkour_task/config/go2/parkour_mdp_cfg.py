@@ -85,6 +85,7 @@ class StudentObservationsCfg:
             "sensor_cfg":SceneEntityCfg("depth_camera"),
             "resize": (58, 87),
             "buffer_len": 2,
+            "debug_vis":True
             },
         )
 
