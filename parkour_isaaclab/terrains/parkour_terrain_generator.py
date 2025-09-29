@@ -95,8 +95,73 @@ class ParkourTerrainGenerator(TerrainGenerator):
         cfg.difficulty = float(difficulty)
         cfg.seed = self.cfg.seed
         # generate hash for the sub-terrain
-        # generate the terrain
-        meshes, origin, goals, goal_heights, x_edge_mask = cfg.function(difficulty, cfg, self.num_goals)
+        # generate the terrain. Support both legacy (meshes, origin) and
+        # new (meshes, origin, goals, goal_heights, x_edge_mask) signatures.
+        res = cfg.function(difficulty, cfg, self.num_goals)
+
+        if isinstance(res, tuple) and len(res) == 5:
+            meshes, origin, goals, goal_heights, x_edge_mask = res
+        elif isinstance(res, tuple) and len(res) >= 2:
+            meshes, origin = res[0], res[1]
+            # synthesize defaults
+            goals = np.zeros((int(self.num_goals), 2), dtype=float)
+            goal_heights = np.zeros((int(self.num_goals),), dtype=np.int16)
+            # expected pixel dims for a sub-terrain
+            try:
+                width_pixels = int(self.cfg.size[0] / self.cfg.horizontal_scale) + 1
+                length_pixels = int(self.cfg.size[1] / self.cfg.horizontal_scale) + 1
+            except Exception:
+                width_pixels, length_pixels = 2, 2
+            x_edge_mask = np.zeros((width_pixels, length_pixels), dtype=np.int16)
+        else:
+            raise ValueError("Unexpected return value from sub-terrain function: %r" % (res,))
+
+        # Ensure goals are shape (num_goals, 2)
+        try:
+            ng = int(self.num_goals)
+            if hasattr(goals, "ndim") and goals.ndim == 2:
+                # truncate or pad columns to 2
+                if goals.shape[1] >= 2:
+                    goals = goals[:ng, :2]
+                else:
+                    # pad missing columns
+                    padded = np.zeros((max(ng, goals.shape[0]), 2), dtype=float)
+                    padded[: goals.shape[0], : goals.shape[1]] = goals
+                    goals = padded[:ng]
+            else:
+                # fallback: create zeros
+                goals = np.zeros((ng, 2), dtype=float)
+        except Exception:
+            goals = np.zeros((int(self.num_goals), 2), dtype=float)
+
+        # Ensure goal_heights length matches num_goals
+        try:
+            gh = np.asarray(goal_heights)
+            if gh.shape[0] < ng:
+                new_gh = np.zeros((ng,), dtype=np.int16)
+                new_gh[: gh.shape[0]] = gh
+                goal_heights = new_gh
+            else:
+                goal_heights = gh[:ng].astype(np.int16)
+        except Exception:
+            goal_heights = np.zeros((int(self.num_goals),), dtype=np.int16)
+
+        # Ensure x_edge_mask matches expected pixel dims; pad/crop as needed
+        try:
+            expected_w = int(self.cfg.size[0] / self.cfg.horizontal_scale) + 1
+            expected_l = int(self.cfg.size[1] / self.cfg.horizontal_scale) + 1
+            xem = np.asarray(x_edge_mask)
+            cur_w, cur_l = xem.shape
+            if (cur_w, cur_l) != (expected_w, expected_l):
+                new_mask = np.zeros((expected_w, expected_l), dtype=np.int16)
+                copy_w = min(cur_w, expected_w)
+                copy_l = min(cur_l, expected_l)
+                new_mask[:copy_w, :copy_l] = xem[:copy_w, :copy_l]
+                x_edge_mask = new_mask
+            else:
+                x_edge_mask = xem.astype(np.int16)
+        except Exception:
+            x_edge_mask = np.zeros((2, 2), dtype=np.int16)
         mesh = trimesh.util.concatenate(meshes)
         # offset mesh such that they are in their center
         transform = np.eye(4)

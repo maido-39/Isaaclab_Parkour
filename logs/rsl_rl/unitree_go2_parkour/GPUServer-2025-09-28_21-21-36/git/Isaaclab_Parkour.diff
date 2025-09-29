@@ -1,0 +1,289 @@
+--- git status ---
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   parkour_isaaclab/actuators/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/actuators/__pycache__/parkour_actuator_cfg.cpython-310.pyc
+	modified:   parkour_isaaclab/actuators/__pycache__/parkour_actuator_pd.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/__pycache__/parkour_manager_based_env.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/__pycache__/parkour_manager_based_env_cfg.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env_cfg.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/__pycache__/parkour_ui.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/__pycache__/parkour_viewprot_camera_contoller.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/__pycache__/events.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/__pycache__/observations.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/__pycache__/rewards.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/__pycache__/terminations.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/actions_cfg.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/joint_actions.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/parkour_command_cfg.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/uniform_parkour_command.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/parkours/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_event.cpython-310.pyc
+	modified:   parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_events_cfg.cpython-310.pyc
+	modified:   parkour_isaaclab/managers/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/managers/__pycache__/parkour_manager.cpython-310.pyc
+	modified:   parkour_isaaclab/managers/__pycache__/parkour_manager_term_cfg.cpython-310.pyc
+	modified:   parkour_isaaclab/managers/__pycache__/parkour_reward_manager.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator_cfg.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/__pycache__/parkour_terrain_importer.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/__pycache__/utils.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/extreme_parkour/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrains_cfg.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrians.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/parkour.cpython-310.pyc
+	modified:   parkour_tasks/parkour_tasks.egg-info/PKG-INFO
+	modified:   parkour_tasks/parkour_tasks.egg-info/SOURCES.txt
+	modified:   parkour_tasks/parkour_tasks/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_tasks/parkour_tasks/__pycache__/default_cfg.cpython-310.pyc
+	modified:   parkour_tasks/parkour_tasks/extreme_parkour_task/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_mdp_cfg.cpython-310.pyc
+	modified:   parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_teacher_cfg.cpython-310.pyc
+	modified:   parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/__init__.cpython-310.pyc
+	modified:   parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/parkour_rl_cfg.cpython-310.pyc
+	modified:   parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/rsl_teacher_ppo_cfg.cpython-310.pyc
+	modified:   scripts/rsl_rl/__pycache__/__init__.cpython-310.pyc
+	modified:   scripts/rsl_rl/__pycache__/cli_args.cpython-310.pyc
+	modified:   scripts/rsl_rl/__pycache__/exporter.cpython-310.pyc
+	modified:   scripts/rsl_rl/__pycache__/vecenv_wrapper.cpython-310.pyc
+	modified:   scripts/rsl_rl/modules/__pycache__/__init__.cpython-310.pyc
+	modified:   scripts/rsl_rl/modules/__pycache__/actor_critic_with_encoder.cpython-310.pyc
+	modified:   scripts/rsl_rl/modules/__pycache__/distillation_with_extractor.cpython-310.pyc
+	modified:   scripts/rsl_rl/modules/__pycache__/on_policy_runner_with_extractor.cpython-310.pyc
+	modified:   scripts/rsl_rl/modules/__pycache__/ppo_with_extractor.cpython-310.pyc
+	modified:   scripts/rsl_rl/modules/feature_extractors/__pycache__/__init__.cpython-310.pyc
+	modified:   scripts/rsl_rl/modules/feature_extractors/__pycache__/depth_backbone.cpython-310.pyc
+	modified:   scripts/rsl_rl/modules/feature_extractors/__pycache__/estimator.cpython-310.pyc
+	modified:   scripts/rsl_rl/modules/feature_extractors/__pycache__/state_encoder.cpython-310.pyc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Isaaclab_Parkour.egg-info/
+	logs/
+	outputs/
+	parkour_tasks/parkour_tasks.egg-info/requires.txt
+
+no changes added to commit (use "git add" and/or "git commit -a") 
+
+
+--- git diff ---
+diff --git a/parkour_isaaclab/actuators/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/actuators/__pycache__/__init__.cpython-310.pyc
+index 35791c5..e3da632 100644
+Binary files a/parkour_isaaclab/actuators/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/actuators/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/actuators/__pycache__/parkour_actuator_cfg.cpython-310.pyc b/parkour_isaaclab/actuators/__pycache__/parkour_actuator_cfg.cpython-310.pyc
+index 42278bf..b50f6f7 100644
+Binary files a/parkour_isaaclab/actuators/__pycache__/parkour_actuator_cfg.cpython-310.pyc and b/parkour_isaaclab/actuators/__pycache__/parkour_actuator_cfg.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/actuators/__pycache__/parkour_actuator_pd.cpython-310.pyc b/parkour_isaaclab/actuators/__pycache__/parkour_actuator_pd.cpython-310.pyc
+index 3898f38..a26cee6 100644
+Binary files a/parkour_isaaclab/actuators/__pycache__/parkour_actuator_pd.cpython-310.pyc and b/parkour_isaaclab/actuators/__pycache__/parkour_actuator_pd.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/envs/__pycache__/__init__.cpython-310.pyc
+index ebd5074..fcf81c9 100644
+Binary files a/parkour_isaaclab/envs/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/envs/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/__pycache__/parkour_manager_based_env.cpython-310.pyc b/parkour_isaaclab/envs/__pycache__/parkour_manager_based_env.cpython-310.pyc
+index 58a4921..d307fee 100644
+Binary files a/parkour_isaaclab/envs/__pycache__/parkour_manager_based_env.cpython-310.pyc and b/parkour_isaaclab/envs/__pycache__/parkour_manager_based_env.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/__pycache__/parkour_manager_based_env_cfg.cpython-310.pyc b/parkour_isaaclab/envs/__pycache__/parkour_manager_based_env_cfg.cpython-310.pyc
+index 10aa9c5..19ed1ef 100644
+Binary files a/parkour_isaaclab/envs/__pycache__/parkour_manager_based_env_cfg.cpython-310.pyc and b/parkour_isaaclab/envs/__pycache__/parkour_manager_based_env_cfg.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env.cpython-310.pyc b/parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env.cpython-310.pyc
+index 18c1f37..619ac07 100644
+Binary files a/parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env.cpython-310.pyc and b/parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env_cfg.cpython-310.pyc b/parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env_cfg.cpython-310.pyc
+index 0de7e43..4d100ae 100644
+Binary files a/parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env_cfg.cpython-310.pyc and b/parkour_isaaclab/envs/__pycache__/parkour_manager_based_rl_env_cfg.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/__pycache__/parkour_ui.cpython-310.pyc b/parkour_isaaclab/envs/__pycache__/parkour_ui.cpython-310.pyc
+index cc3960c..0ad918d 100644
+Binary files a/parkour_isaaclab/envs/__pycache__/parkour_ui.cpython-310.pyc and b/parkour_isaaclab/envs/__pycache__/parkour_ui.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/__pycache__/parkour_viewprot_camera_contoller.cpython-310.pyc b/parkour_isaaclab/envs/__pycache__/parkour_viewprot_camera_contoller.cpython-310.pyc
+index 2e880e4..3aae395 100644
+Binary files a/parkour_isaaclab/envs/__pycache__/parkour_viewprot_camera_contoller.cpython-310.pyc and b/parkour_isaaclab/envs/__pycache__/parkour_viewprot_camera_contoller.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/envs/mdp/__pycache__/__init__.cpython-310.pyc
+index db2854c..13b909d 100644
+Binary files a/parkour_isaaclab/envs/mdp/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/__pycache__/events.cpython-310.pyc b/parkour_isaaclab/envs/mdp/__pycache__/events.cpython-310.pyc
+index 11eea17..91dee78 100644
+Binary files a/parkour_isaaclab/envs/mdp/__pycache__/events.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/__pycache__/events.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/__pycache__/observations.cpython-310.pyc b/parkour_isaaclab/envs/mdp/__pycache__/observations.cpython-310.pyc
+index add777a..7b074c4 100644
+Binary files a/parkour_isaaclab/envs/mdp/__pycache__/observations.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/__pycache__/observations.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/__pycache__/rewards.cpython-310.pyc b/parkour_isaaclab/envs/mdp/__pycache__/rewards.cpython-310.pyc
+index 7c32b5c..8b64133 100644
+Binary files a/parkour_isaaclab/envs/mdp/__pycache__/rewards.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/__pycache__/rewards.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/__pycache__/terminations.cpython-310.pyc b/parkour_isaaclab/envs/mdp/__pycache__/terminations.cpython-310.pyc
+index 2110747..38dbf50 100644
+Binary files a/parkour_isaaclab/envs/mdp/__pycache__/terminations.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/__pycache__/terminations.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/__init__.cpython-310.pyc
+index 3deac1b..3958f82 100644
+Binary files a/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/actions_cfg.cpython-310.pyc b/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/actions_cfg.cpython-310.pyc
+index 54aba5c..34b46fb 100644
+Binary files a/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/actions_cfg.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/actions_cfg.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/joint_actions.cpython-310.pyc b/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/joint_actions.cpython-310.pyc
+index 5df0572..9c0551f 100644
+Binary files a/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/joint_actions.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/parkour_actions/__pycache__/joint_actions.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/__init__.cpython-310.pyc
+index 2058977..226900e 100644
+Binary files a/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/parkour_command_cfg.cpython-310.pyc b/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/parkour_command_cfg.cpython-310.pyc
+index ce87cc1..f04859c 100644
+Binary files a/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/parkour_command_cfg.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/parkour_command_cfg.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/uniform_parkour_command.cpython-310.pyc b/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/uniform_parkour_command.cpython-310.pyc
+index 5619457..548434f 100644
+Binary files a/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/uniform_parkour_command.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/parkour_commands/__pycache__/uniform_parkour_command.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/parkours/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/envs/mdp/parkours/__pycache__/__init__.cpython-310.pyc
+index 1c69be6..39059ea 100644
+Binary files a/parkour_isaaclab/envs/mdp/parkours/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/parkours/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_event.cpython-310.pyc b/parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_event.cpython-310.pyc
+index 0870b87..fc0b1d3 100644
+Binary files a/parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_event.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_event.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_events_cfg.cpython-310.pyc b/parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_events_cfg.cpython-310.pyc
+index 647cd72..74cf992 100644
+Binary files a/parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_events_cfg.cpython-310.pyc and b/parkour_isaaclab/envs/mdp/parkours/__pycache__/parkour_events_cfg.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/managers/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/managers/__pycache__/__init__.cpython-310.pyc
+index b961570..0a2ce05 100644
+Binary files a/parkour_isaaclab/managers/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/managers/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/managers/__pycache__/parkour_manager.cpython-310.pyc b/parkour_isaaclab/managers/__pycache__/parkour_manager.cpython-310.pyc
+index fff635f..75a734a 100644
+Binary files a/parkour_isaaclab/managers/__pycache__/parkour_manager.cpython-310.pyc and b/parkour_isaaclab/managers/__pycache__/parkour_manager.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/managers/__pycache__/parkour_manager_term_cfg.cpython-310.pyc b/parkour_isaaclab/managers/__pycache__/parkour_manager_term_cfg.cpython-310.pyc
+index d8053d5..7fd2352 100644
+Binary files a/parkour_isaaclab/managers/__pycache__/parkour_manager_term_cfg.cpython-310.pyc and b/parkour_isaaclab/managers/__pycache__/parkour_manager_term_cfg.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/managers/__pycache__/parkour_reward_manager.cpython-310.pyc b/parkour_isaaclab/managers/__pycache__/parkour_reward_manager.cpython-310.pyc
+index 505655b..28663ef 100644
+Binary files a/parkour_isaaclab/managers/__pycache__/parkour_reward_manager.cpython-310.pyc and b/parkour_isaaclab/managers/__pycache__/parkour_reward_manager.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/terrains/__pycache__/__init__.cpython-310.pyc
+index d38f6df..f1aa929 100644
+Binary files a/parkour_isaaclab/terrains/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/terrains/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator.cpython-310.pyc b/parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator.cpython-310.pyc
+index 60beae6..19cf83f 100644
+Binary files a/parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator.cpython-310.pyc and b/parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator_cfg.cpython-310.pyc b/parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator_cfg.cpython-310.pyc
+index 1732196..71bca0f 100644
+Binary files a/parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator_cfg.cpython-310.pyc and b/parkour_isaaclab/terrains/__pycache__/parkour_terrain_generator_cfg.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/__pycache__/parkour_terrain_importer.cpython-310.pyc b/parkour_isaaclab/terrains/__pycache__/parkour_terrain_importer.cpython-310.pyc
+index f3fc89f..c9f5126 100644
+Binary files a/parkour_isaaclab/terrains/__pycache__/parkour_terrain_importer.cpython-310.pyc and b/parkour_isaaclab/terrains/__pycache__/parkour_terrain_importer.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/__pycache__/utils.cpython-310.pyc b/parkour_isaaclab/terrains/__pycache__/utils.cpython-310.pyc
+index 6d6b74a..7f05477 100644
+Binary files a/parkour_isaaclab/terrains/__pycache__/utils.cpython-310.pyc and b/parkour_isaaclab/terrains/__pycache__/utils.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/extreme_parkour/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/terrains/extreme_parkour/__pycache__/__init__.cpython-310.pyc
+index b83a15e..160735c 100644
+Binary files a/parkour_isaaclab/terrains/extreme_parkour/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/terrains/extreme_parkour/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrains_cfg.cpython-310.pyc b/parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrains_cfg.cpython-310.pyc
+index c82f2a8..2cea510 100644
+Binary files a/parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrains_cfg.cpython-310.pyc and b/parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrains_cfg.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrians.cpython-310.pyc b/parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrians.cpython-310.pyc
+index 6fd68b3..037233d 100644
+Binary files a/parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrians.cpython-310.pyc and b/parkour_isaaclab/terrains/extreme_parkour/__pycache__/extreme_parkour_terrians.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/__init__.cpython-310.pyc b/parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/__init__.cpython-310.pyc
+index 3516132..bc03fca 100644
+Binary files a/parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/__init__.cpython-310.pyc and b/parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/parkour.cpython-310.pyc b/parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/parkour.cpython-310.pyc
+index 8e04828..4cec89a 100644
+Binary files a/parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/parkour.cpython-310.pyc and b/parkour_isaaclab/terrains/extreme_parkour/config/__pycache__/parkour.cpython-310.pyc differ
+diff --git a/parkour_tasks/parkour_tasks.egg-info/PKG-INFO b/parkour_tasks/parkour_tasks.egg-info/PKG-INFO
+index a55582a..07cbb6c 100644
+--- a/parkour_tasks/parkour_tasks.egg-info/PKG-INFO
++++ b/parkour_tasks/parkour_tasks.egg-info/PKG-INFO
+@@ -10,10 +10,12 @@ Classifier: Natural Language :: English
+ Classifier: Programming Language :: Python :: 3.10
+ Classifier: Isaac Sim :: 4.5.0
+ Requires-Python: >=3.10
++Requires-Dist: fast_simplification
+ Dynamic: author
+ Dynamic: classifier
+ Dynamic: home-page
+ Dynamic: keywords
+ Dynamic: maintainer
++Dynamic: requires-dist
+ Dynamic: requires-python
+ Dynamic: summary
+diff --git a/parkour_tasks/parkour_tasks.egg-info/SOURCES.txt b/parkour_tasks/parkour_tasks.egg-info/SOURCES.txt
+index 4e068b7..d5181b2 100644
+--- a/parkour_tasks/parkour_tasks.egg-info/SOURCES.txt
++++ b/parkour_tasks/parkour_tasks.egg-info/SOURCES.txt
+@@ -5,4 +5,5 @@ parkour_tasks.egg-info/PKG-INFO
+ parkour_tasks.egg-info/SOURCES.txt
+ parkour_tasks.egg-info/dependency_links.txt
+ parkour_tasks.egg-info/not-zip-safe
++parkour_tasks.egg-info/requires.txt
+ parkour_tasks.egg-info/top_level.txt
+\ No newline at end of file
+diff --git a/parkour_tasks/parkour_tasks/__pycache__/__init__.cpython-310.pyc b/parkour_tasks/parkour_tasks/__pycache__/__init__.cpython-310.pyc
+index 6678364..ed663a9 100644
+Binary files a/parkour_tasks/parkour_tasks/__pycache__/__init__.cpython-310.pyc and b/parkour_tasks/parkour_tasks/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_tasks/parkour_tasks/__pycache__/default_cfg.cpython-310.pyc b/parkour_tasks/parkour_tasks/__pycache__/default_cfg.cpython-310.pyc
+index 5c14729..5554dfe 100644
+Binary files a/parkour_tasks/parkour_tasks/__pycache__/default_cfg.cpython-310.pyc and b/parkour_tasks/parkour_tasks/__pycache__/default_cfg.cpython-310.pyc differ
+diff --git a/parkour_tasks/parkour_tasks/extreme_parkour_task/__pycache__/__init__.cpython-310.pyc b/parkour_tasks/parkour_tasks/extreme_parkour_task/__pycache__/__init__.cpython-310.pyc
+index c06b1ac..b3ad994 100644
+Binary files a/parkour_tasks/parkour_tasks/extreme_parkour_task/__pycache__/__init__.cpython-310.pyc and b/parkour_tasks/parkour_tasks/extreme_parkour_task/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/__init__.cpython-310.pyc b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/__init__.cpython-310.pyc
+index 65642b7..18b2db6 100644
+Binary files a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/__init__.cpython-310.pyc and b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_mdp_cfg.cpython-310.pyc b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_mdp_cfg.cpython-310.pyc
+index dca2219..10accf0 100644
+Binary files a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_mdp_cfg.cpython-310.pyc and b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_mdp_cfg.cpython-310.pyc differ
+diff --git a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_teacher_cfg.cpython-310.pyc b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_teacher_cfg.cpython-310.pyc
+index 7edbd96..0a04d54 100644
+Binary files a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_teacher_cfg.cpython-310.pyc and b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/__pycache__/parkour_teacher_cfg.cpython-310.pyc differ
+diff --git a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/__init__.cpython-310.pyc b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/__init__.cpython-310.pyc
+index 6891ec5..5b062f3 100644
+Binary files a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/__init__.cpython-310.pyc and b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/parkour_rl_cfg.cpython-310.pyc b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/parkour_rl_cfg.cpython-310.pyc
+index 590be96..5b15768 100644
+Binary files a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/parkour_rl_cfg.cpython-310.pyc and b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/parkour_rl_cfg.cpython-310.pyc differ
+diff --git a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/rsl_teacher_ppo_cfg.cpython-310.pyc b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/rsl_teacher_ppo_cfg.cpython-310.pyc
+index 371ec55..daa5a85 100644
+Binary files a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/rsl_teacher_ppo_cfg.cpython-310.pyc and b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/agents/__pycache__/rsl_teacher_ppo_cfg.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/__pycache__/__init__.cpython-310.pyc b/scripts/rsl_rl/__pycache__/__init__.cpython-310.pyc
+index 6acb492..b450d38 100644
+Binary files a/scripts/rsl_rl/__pycache__/__init__.cpython-310.pyc and b/scripts/rsl_rl/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/__pycache__/cli_args.cpython-310.pyc b/scripts/rsl_rl/__pycache__/cli_args.cpython-310.pyc
+index 03b4f26..bcc906d 100644
+Binary files a/scripts/rsl_rl/__pycache__/cli_args.cpython-310.pyc and b/scripts/rsl_rl/__pycache__/cli_args.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/__pycache__/exporter.cpython-310.pyc b/scripts/rsl_rl/__pycache__/exporter.cpython-310.pyc
+index d1dc3e9..432b34d 100644
+Binary files a/scripts/rsl_rl/__pycache__/exporter.cpython-310.pyc and b/scripts/rsl_rl/__pycache__/exporter.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/__pycache__/vecenv_wrapper.cpython-310.pyc b/scripts/rsl_rl/__pycache__/vecenv_wrapper.cpython-310.pyc
+index 7ec4a3e..45fd3f6 100644
+Binary files a/scripts/rsl_rl/__pycache__/vecenv_wrapper.cpython-310.pyc and b/scripts/rsl_rl/__pycache__/vecenv_wrapper.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/modules/__pycache__/__init__.cpython-310.pyc b/scripts/rsl_rl/modules/__pycache__/__init__.cpython-310.pyc
+index dd03936..28db030 100644
+Binary files a/scripts/rsl_rl/modules/__pycache__/__init__.cpython-310.pyc and b/scripts/rsl_rl/modules/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/modules/__pycache__/actor_critic_with_encoder.cpython-310.pyc b/scripts/rsl_rl/modules/__pycache__/actor_critic_with_encoder.cpython-310.pyc
+index adeed19..b422b2a 100644
+Binary files a/scripts/rsl_rl/modules/__pycache__/actor_critic_with_encoder.cpython-310.pyc and b/scripts/rsl_rl/modules/__pycache__/actor_critic_with_encoder.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/modules/__pycache__/distillation_with_extractor.cpython-310.pyc b/scripts/rsl_rl/modules/__pycache__/distillation_with_extractor.cpython-310.pyc
+index b09528f..5ab9975 100644
+Binary files a/scripts/rsl_rl/modules/__pycache__/distillation_with_extractor.cpython-310.pyc and b/scripts/rsl_rl/modules/__pycache__/distillation_with_extractor.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/modules/__pycache__/on_policy_runner_with_extractor.cpython-310.pyc b/scripts/rsl_rl/modules/__pycache__/on_policy_runner_with_extractor.cpython-310.pyc
+index 4503366..27feb6f 100644
+Binary files a/scripts/rsl_rl/modules/__pycache__/on_policy_runner_with_extractor.cpython-310.pyc and b/scripts/rsl_rl/modules/__pycache__/on_policy_runner_with_extractor.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/modules/__pycache__/ppo_with_extractor.cpython-310.pyc b/scripts/rsl_rl/modules/__pycache__/ppo_with_extractor.cpython-310.pyc
+index 6e8058b..ba3b82e 100644
+Binary files a/scripts/rsl_rl/modules/__pycache__/ppo_with_extractor.cpython-310.pyc and b/scripts/rsl_rl/modules/__pycache__/ppo_with_extractor.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/modules/feature_extractors/__pycache__/__init__.cpython-310.pyc b/scripts/rsl_rl/modules/feature_extractors/__pycache__/__init__.cpython-310.pyc
+index 081d346..5b38db0 100644
+Binary files a/scripts/rsl_rl/modules/feature_extractors/__pycache__/__init__.cpython-310.pyc and b/scripts/rsl_rl/modules/feature_extractors/__pycache__/__init__.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/modules/feature_extractors/__pycache__/depth_backbone.cpython-310.pyc b/scripts/rsl_rl/modules/feature_extractors/__pycache__/depth_backbone.cpython-310.pyc
+index 376783d..50ebe10 100644
+Binary files a/scripts/rsl_rl/modules/feature_extractors/__pycache__/depth_backbone.cpython-310.pyc and b/scripts/rsl_rl/modules/feature_extractors/__pycache__/depth_backbone.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/modules/feature_extractors/__pycache__/estimator.cpython-310.pyc b/scripts/rsl_rl/modules/feature_extractors/__pycache__/estimator.cpython-310.pyc
+index 72b5b43..d24254e 100644
+Binary files a/scripts/rsl_rl/modules/feature_extractors/__pycache__/estimator.cpython-310.pyc and b/scripts/rsl_rl/modules/feature_extractors/__pycache__/estimator.cpython-310.pyc differ
+diff --git a/scripts/rsl_rl/modules/feature_extractors/__pycache__/state_encoder.cpython-310.pyc b/scripts/rsl_rl/modules/feature_extractors/__pycache__/state_encoder.cpython-310.pyc
+index aeb2c8b..0faad79 100644
+Binary files a/scripts/rsl_rl/modules/feature_extractors/__pycache__/state_encoder.cpython-310.pyc and b/scripts/rsl_rl/modules/feature_extractors/__pycache__/state_encoder.cpython-310.pyc differ
