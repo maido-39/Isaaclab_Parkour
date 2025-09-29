@@ -2,12 +2,19 @@ import torch
 import torch.nn as nn
     
 class DepthOnlyFCBackbone58x87(nn.Module):
+    ## Input: (num_frames, 58, 87) depth images
+    ## Output: (scandots_output_dim,) latent vector
+
     def __init__(self, scandots_output_dim, output_activation=None, num_frames=1):
         super().__init__()
-
+        # 프레임 수 (채널 수) 저장
         self.num_frames = num_frames
+        # 활성화 함수는 Exponential Linear Unit(ELU) 사용
         activation = nn.ELU()
+
+        # 이미지 인코더 정의
         self.image_compression = nn.Sequential(
+            # nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')
             nn.Conv2d(in_channels=self.num_frames, out_channels=32, kernel_size=5),
             nn.MaxPool2d(kernel_size=2, stride=2),
             activation,
