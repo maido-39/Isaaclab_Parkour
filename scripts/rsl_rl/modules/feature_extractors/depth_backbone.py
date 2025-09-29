@@ -14,15 +14,19 @@ class DepthOnlyFCBackbone58x87(nn.Module):
 
         # 이미지 인코더 정의
         self.image_compression = nn.Sequential(
-            # nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')
+            # 입력 채널 수는 프레임 수, 출력 채널 수는 32, 커널 크기는 5 ???
+            # 입력 이미지 다운샘플링
             nn.Conv2d(in_channels=self.num_frames, out_channels=32, kernel_size=5),
             nn.MaxPool2d(kernel_size=2, stride=2),
             activation,
+            # 입력 이미지 업샘플링
             nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3),
             activation,
+            # 출력 평탄화 및 MLP 적용
             nn.Flatten(),
             nn.Linear(64 * 25 * 39, 128),
             activation,
+            # Output layer
             nn.Linear(128, scandots_output_dim)
         )
 
