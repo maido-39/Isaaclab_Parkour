@@ -10,9 +10,12 @@ from .parkour_mdp_cfg import *
 from parkour_tasks.default_cfg import ParkourDefaultSceneCfg, VIEWER
 
 @configclass
+## Default Scene Config
 class ParkourTeacherSceneCfg(ParkourDefaultSceneCfg):
+    ## To Observation!! how??
     height_scanner = RayCasterCfg(
         prim_path="{ENV_REGEX_NS}/Robot/base",
+        #                           Offset  X      Y     Z
         offset=RayCasterCfg.OffsetCfg(pos=(0.375, 0.0, 20.0)),
         attach_yaw_only=True,
         pattern_cfg=patterns.GridPatternCfg(resolution=0.15, size=[1.65, 1.5]),
@@ -28,8 +31,10 @@ class ParkourTeacherSceneCfg(ParkourDefaultSceneCfg):
     def __post_init__(self):
         super().__post_init__()
         self.terrain.terrain_generator = EXTREME_PARKOUR_TERRAINS_CFG
-        
+    
 @configclass
+## 
+## Espacially for Teacher Environment Config
 class UnitreeGo2TeacherParkourEnvCfg(ParkourManagerBasedRLEnvCfg):
     scene: ParkourTeacherSceneCfg = ParkourTeacherSceneCfg(num_envs=6144, env_spacing=1.)
     # Basic settings
