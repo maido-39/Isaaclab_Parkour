@@ -104,8 +104,8 @@ torch.backends.cudnn.benchmark = False
 print(str(args_cli.task))
 @hydra_task_config(args_cli.task, "rsl_rl_cfg_entry_point")
 def main(env_cfg: ParkourManagerBasedRLEnv |ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agent_cfg: ParkourRslRlOnPolicyRunnerCfg):
-    a = env_cfg
-    b = agent_cfg
+    a = env_cfg # Debugging 
+    b = agent_cfg # Debugging 
     """Train with RSL-RL agent."""
     
 

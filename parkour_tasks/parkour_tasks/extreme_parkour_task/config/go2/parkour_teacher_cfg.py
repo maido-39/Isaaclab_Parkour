@@ -36,7 +36,7 @@ class ParkourTeacherSceneCfg(ParkourDefaultSceneCfg):
 ## 
 ## Espacially for Teacher Environment Config
 class UnitreeGo2TeacherParkourEnvCfg(ParkourManagerBasedRLEnvCfg):
-    scene: ParkourTeacherSceneCfg = ParkourTeacherSceneCfg(num_envs=6144, env_spacing=1.)
+    scene: ParkourTeacherSceneCfg = ParkourTeacherSceneCfg(num_envs=3000, env_spacing=1.)
     # Basic settings
     observations: TeacherObservationsCfg = TeacherObservationsCfg()
     actions: ActionsCfg = ActionsCfg()
