@@ -303,6 +303,7 @@ class OnPolicyRunnerWithExtractor(OnPolicyRunner):
     def learn_vision(self, num_learning_iterations, init_at_random_ep_len=False):
         if not isinstance(self.alg, DistillationWithExtractor):
             raise TypeError('A algorithm must be DistillationWithExtractor, not a ', self.alg)
+        ## Logging to log, tensorboard
         else:
             self.alg: DistillationWithExtractor
         if self.log_dir is not None and self.writer is None and not self.disable_logs:
@@ -327,6 +328,7 @@ class OnPolicyRunnerWithExtractor(OnPolicyRunner):
             else:
                 raise ValueError("Logger type not found. Please choose 'neptune', 'wandb' or 'tensorboard'.")
 
+        ## Recieve observations
         obs, extras = self.env.get_observations()
         additional_obs = {}
         additional_obs["delta_yaw_ok"] = extras['observations']['delta_yaw_ok'].to(self.device)

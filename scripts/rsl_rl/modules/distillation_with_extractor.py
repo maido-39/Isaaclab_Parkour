@@ -36,6 +36,7 @@ class DistillationWithExtractor():
         self.num_prop = estimator_paras["num_prop"]
         self.num_scan = estimator_paras["num_scan"]
         self.policy = policy
+        ### WTF why there is two optimizer?
         self.estimator_optimizer = optim.Adam(self.estimator.parameters(), lr=estimator_paras["learning_rate"])
         self.optimizer = optim.Adam(self.policy.parameters(), lr=learning_rate)
 

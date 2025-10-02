@@ -16,6 +16,7 @@ class DepthOnlyFCBackbone58x87(nn.Module):
             nn.Flatten(),
             nn.Linear(64 * 25 * 39, 128),
             activation,
+            ## 입력 128 , 출력 scandots_output_dim
             nn.Linear(128, scandots_output_dim)
         )
 

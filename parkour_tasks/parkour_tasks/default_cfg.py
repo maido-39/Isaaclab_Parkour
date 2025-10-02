@@ -89,6 +89,7 @@ CAMERA_CFG = RayCasterCameraCfg(
     prim_path= '{ENV_REGEX_NS}/Robot/base',
     data_types=["distance_to_camera"],
     offset=RayCasterCameraCfg.OffsetCfg(
+        ## Transform camera from robot frame for robot observation
         pos=(0.33, 0.0, 0.08), 
         rot=quat_from_euler_xyz_tuple(*tuple(torch.deg2rad(torch.tensor([180,70,-90])))), 
         convention="ros"
@@ -106,6 +107,7 @@ CAMERA_CFG = RayCasterCameraCfg(
 )
 
 CAMERA_USD_CFG = AssetBaseCfg(
+    ## Physical robot cam defenition for camera observation
     prim_path="{ENV_REGEX_NS}/Robot/base/d435",
     spawn=sim_utils.UsdFileCfg(usd_path=os.path.join(agents.__path__[0],'d435.usd')),
     init_state=AssetBaseCfg.InitialStateCfg(
@@ -114,6 +116,7 @@ CAMERA_USD_CFG = AssetBaseCfg(
     )
 )
 VIEWER = ViewerCfg(
+    ## User's viewport at IsaacSim
     eye=(-0., 2.6, 1.6),
     asset_name = "robot",
     origin_type = 'asset_root',

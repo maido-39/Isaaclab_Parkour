@@ -1,11 +1,12 @@
 # exclude logs, outputs
-*/logs/
-*/outputs/
+logs/
+outputs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
 *$py.class
+*.pyc
 
 # C extensions
 *.so
