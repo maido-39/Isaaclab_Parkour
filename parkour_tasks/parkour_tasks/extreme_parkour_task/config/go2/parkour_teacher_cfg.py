@@ -14,7 +14,7 @@ from parkour_tasks.default_cfg import ParkourDefaultSceneCfg, VIEWER
 class ParkourTeacherSceneCfg(ParkourDefaultSceneCfg):
     ## To Observation!! how??
     height_scanner = RayCasterCfg(
-        prim_path="{ENV_REGEX_NS}/Robot/base",
+        prim_path="{ENV_REGEX_NS}/Robot/trunk",
         offset=RayCasterCfg.OffsetCfg(pos=(0.375, 0.0, 20.0)),  # Forward offset for camera-like perspective
         attach_yaw_only=True,
         pattern_cfg=patterns.GridPatternCfg(resolution=0.15, size=[1.65, 1.5]),  # Keep original: 12x11=132 points for student compatibility
@@ -35,7 +35,7 @@ class ParkourTeacherSceneCfg(ParkourDefaultSceneCfg):
 ## 
 ## Espacially for Teacher Environment Config
 class UnitreeGo2TeacherParkourEnvCfg(ParkourManagerBasedRLEnvCfg):
-    scene: ParkourTeacherSceneCfg = ParkourTeacherSceneCfg(num_envs=64, env_spacing=1.)
+    scene: ParkourTeacherSceneCfg = ParkourTeacherSceneCfg(num_envs=6000, env_spacing=1.)
     # Basic settings
     observations: RoughObservationsCfg = RoughObservationsCfg()
     actions: RoughActionsCfg = RoughActionsCfg()

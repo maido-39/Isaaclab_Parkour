@@ -126,7 +126,7 @@ class RoughTerminationsCfg:
     # Terminate if robot base contacts ground
     base_contact = DoneTerm(
         func=mdp.illegal_contact,
-        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="base"), "threshold": 1.0},
+        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="trunk"), "threshold": 1.0},  # Go1 uses trunk
     )
 
 
@@ -151,8 +151,8 @@ class RoughEventCfg:
         func=randomize_rigid_body_mass,
         mode="startup",
         params={
-            "asset_cfg": SceneEntityCfg("robot", body_names="base"),
-            "mass_distribution_params": (-1.0, 3.0),  # Go2 specific range
+            "asset_cfg": SceneEntityCfg("robot", body_names="trunk"),  # Go1 uses trunk
+            "mass_distribution_params": (-1.0, 3.0),  # Go1 specific range  
             "operation": "add",
         },
     )
@@ -161,8 +161,8 @@ class RoughEventCfg:
         func=randomize_rigid_body_mass,
         mode="startup",
         params={
-            "asset_cfg": SceneEntityCfg("robot", body_names="base"),
-            "mass_distribution_params": (-1.0, 3.0),  # Go2 specific range
+            "asset_cfg": SceneEntityCfg("robot", body_names="trunk"),  # Go1 uses trunk
+            "mass_distribution_params": (-1.0, 3.0),  # Go1 specific range
             "operation": "add",
         },
     )
@@ -172,7 +172,7 @@ class RoughEventCfg:
         func=apply_external_force_torque,
         mode="reset",
         params={
-            "asset_cfg": SceneEntityCfg("robot", body_names="base"),
+            "asset_cfg": SceneEntityCfg("robot", body_names="trunk"),  # Go1 uses trunk
             "force_range": (0.0, 0.0),
             "torque_range": (-0.0, 0.0),
         },

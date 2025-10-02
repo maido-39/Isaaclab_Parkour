@@ -1,6 +1,6 @@
 from isaaclab.scene import InteractiveSceneCfg
 from isaaclab.assets import ArticulationCfg, AssetBaseCfg
-from isaaclab_assets.robots.unitree import UNITREE_GO2_CFG  # isort: skip
+from isaaclab_assets.robots.unitree import UNITREE_GO1_CFG  # isort: skip
 import isaaclab.sim as sim_utils
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR, ISAACLAB_NUCLEUS_DIR
 from isaaclab.terrains import TerrainImporterCfg
@@ -11,7 +11,8 @@ from isaaclab.sensors import RayCasterCameraCfg
 from isaaclab.sensors.ray_caster.patterns import PinholeCameraPatternCfg
 from isaaclab.envs import ViewerCfg
 import os, torch 
-from parkour_isaaclab.actuators.parkour_actuator_cfg import ParkourDCMotorCfg
+from parkour_isaaclab.actuators.parkour_actuator_cfg import ParkourDCMotorCfg, ParkourActuatorNetMLPCfg
+from isaaclab_assets.robots.unitree import GO1_ACTUATOR_CFG
 
 def quat_from_euler_xyz_tuple(roll: torch.Tensor, pitch: torch.Tensor, yaw: torch.Tensor) -> tuple:
     cy = torch.cos(yaw * 0.5)
@@ -30,7 +31,7 @@ def quat_from_euler_xyz_tuple(roll: torch.Tensor, pitch: torch.Tensor, yaw: torc
 
 @configclass
 class ParkourDefaultSceneCfg(InteractiveSceneCfg):
-    robot: ArticulationCfg = UNITREE_GO2_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
+    robot: ArticulationCfg = UNITREE_GO1_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
     
     sky_light = AssetBaseCfg(
         prim_path="/World/skyLight",
@@ -62,31 +63,12 @@ class ParkourDefaultSceneCfg(InteractiveSceneCfg):
     )
     def __post_init__(self):
         self.robot.spawn.articulation_props.enabled_self_collisions = True
-        self.robot.actuators['base_legs'] = ParkourDCMotorCfg(
-            joint_names_expr=[".*_hip_joint", ".*_thigh_joint", ".*_calf_joint"],
-            effort_limit={
-                        '.*_hip_joint':35.0,
-                        '.*_thigh_joint':40.0,
-                        '.*_calf_joint':40.0,
-                        },
-            saturation_effort={
-                        '.*_hip_joint':35.0,
-                        '.*_thigh_joint':45.0,
-                        '.*_calf_joint':45.0,
-                        },
-            velocity_limit={
-                        '.*_hip_joint':52.4,
-                        '.*_thigh_joint':30.1,
-                        '.*_calf_joint':30.1,
-                        },
-            stiffness=40.0,
-            damping=1.0,
-            friction=0.0,
-        )
+        # Use Go1's MLP-based actuator model (same as Isaac Lab's standard Go1)
+        self.robot.actuators['base_legs'] = GO1_ACTUATOR_CFG
 
 ## we are now using a raycaster based camera, not a pinhole camera. see tail issue https://github.com/isaac-sim/IsaacLab/issues/719
 CAMERA_CFG = RayCasterCameraCfg( 
-    prim_path= '{ENV_REGEX_NS}/Robot/base',
+    prim_path= '{ENV_REGEX_NS}/Robot/trunk',
     data_types=["distance_to_camera"],
     offset=RayCasterCameraCfg.OffsetCfg(
         ## Transform camera from robot frame for robot observation
@@ -108,7 +90,7 @@ CAMERA_CFG = RayCasterCameraCfg(
 
 CAMERA_USD_CFG = AssetBaseCfg(
     ## Physical robot cam defenition for camera observation
-    prim_path="{ENV_REGEX_NS}/Robot/base/d435",
+    prim_path="{ENV_REGEX_NS}/Robot/trunk/d435",
     spawn=sim_utils.UsdFileCfg(usd_path=os.path.join(agents.__path__[0],'d435.usd')),
     init_state=AssetBaseCfg.InitialStateCfg(
             pos=(0.33, 0.0, 0.08), 

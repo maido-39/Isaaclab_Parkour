@@ -6,7 +6,7 @@
 from collections.abc import Iterable
 
 from isaaclab.utils import configclass
-from isaaclab.actuators.actuator_cfg import DCMotorCfg
+from isaaclab.actuators.actuator_cfg import DCMotorCfg, ActuatorNetMLPCfg
 from . import parkour_actuator_pd
 
 @configclass
@@ -16,3 +16,11 @@ class ParkourDCMotorCfg(DCMotorCfg):
 
     saturation_effort: dict[str, float] | None = None
     """Peak motor force/torque of the electric DC motor (in N-m)."""
+
+
+@configclass  
+class ParkourActuatorNetMLPCfg(ActuatorNetMLPCfg):
+    """Configuration for Go1 MLP-based actuator model for parkour."""
+    
+    # Use Isaac Lab's standard Go1 actuator network
+    # This will be set in the scene configuration
