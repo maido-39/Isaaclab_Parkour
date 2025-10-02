@@ -101,7 +101,14 @@ class Actor(nn.Module):
             obs_prop_scan = torch.cat([obs[:, :self.num_prop], scan_latent], dim=1)
         else:
             obs_prop_scan = obs[:, :self.num_prop + self.num_scan]
-        obs_priv_explicit = obs[:, self.num_prop + self.num_scan:self.num_prop + self.num_scan + self.num_priv_explicit]
+        # Handle case where observation tensor doesn't have privileged states (for rough terrain)
+        expected_priv_start = self.num_prop + self.num_scan
+        expected_priv_end = expected_priv_start + self.num_priv_explicit
+        if obs.shape[1] >= expected_priv_end:
+            obs_priv_explicit = obs[:, expected_priv_start:expected_priv_end]
+        else:
+            # No privileged states available, create zeros
+            obs_priv_explicit = torch.zeros(obs.shape[0], self.num_priv_explicit, device=obs.device)
         if hist_encoding:
             latent = self.infer_hist_latent(obs)
         else:
@@ -111,11 +118,28 @@ class Actor(nn.Module):
         return backbone_output
     
     def infer_priv_latent(self, obs):
-        priv = obs[:, self.num_prop + self.num_scan + self.num_priv_explicit: self.num_prop + self.num_scan + self.num_priv_explicit + self.num_priv_latent]
+        # Handle case where observation tensor doesn't have privileged latent states
+        expected_priv_latent_start = self.num_prop + self.num_scan + self.num_priv_explicit
+        expected_priv_latent_end = expected_priv_latent_start + self.num_priv_latent
+        if obs.shape[1] >= expected_priv_latent_end:
+            priv = obs[:, expected_priv_latent_start:expected_priv_latent_end]
+        else:
+            # No privileged latent states available, create zeros
+            priv = torch.zeros(obs.shape[0], self.num_priv_latent, device=obs.device)
         return self.priv_encoder(priv)
     
     def infer_hist_latent(self, obs):
-        hist = obs[:, -self.num_hist*self.num_prop:]
+        expected_hist_size = self.num_hist * self.num_prop
+        
+        # Check if we have enough dimensions for history
+        if obs.shape[1] >= self.num_prop + self.num_scan + expected_hist_size:
+            hist = obs[:, -expected_hist_size:]
+        else:
+            # If observation doesn't have history or has wrong size, create zeros
+            batch_size = obs.shape[0]
+            device = obs.device
+            hist = torch.zeros(batch_size, expected_hist_size, device=device)
+            
         return self.history_encoder(hist.view(-1, self.num_hist, self.num_prop))
     
     def infer_scandots_latent(self, obs):

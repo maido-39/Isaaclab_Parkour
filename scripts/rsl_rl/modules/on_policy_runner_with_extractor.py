@@ -16,6 +16,7 @@ from .actor_critic_with_encoder import ActorCriticRMA
 from rsl_rl.utils import store_code_state
 from rsl_rl.runners.on_policy_runner import OnPolicyRunner
 from .feature_extractors import DefaultEstimator
+from .dummy_estimator import DummyEstimator
 from .ppo_with_extractor import PPOWithExtractor 
 from .distillation_with_extractor import DistillationWithExtractor 
 from copy import copy 

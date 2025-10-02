@@ -5,7 +5,7 @@ import isaaclab.sim as sim_utils
 from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR, ISAACLAB_NUCLEUS_DIR
 from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils import configclass
-from parkour_isaaclab.terrains.parkour_terrain_importer import ParkourTerrainImporter
+from isaaclab.terrains import TerrainImporter
 from parkour_tasks.extreme_parkour_task.config.go2 import agents 
 from isaaclab.sensors import RayCasterCameraCfg
 from isaaclab.sensors.ray_caster.patterns import PinholeCameraPatternCfg
@@ -41,7 +41,7 @@ class ParkourDefaultSceneCfg(InteractiveSceneCfg):
     )
 
     terrain = TerrainImporterCfg(
-        class_type= ParkourTerrainImporter,
+        class_type= TerrainImporter,
         prim_path="/World/ground",
         terrain_type="generator",
         terrain_generator=None,

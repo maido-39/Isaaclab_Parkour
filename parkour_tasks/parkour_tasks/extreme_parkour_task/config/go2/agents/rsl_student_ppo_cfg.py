@@ -16,6 +16,10 @@ class UnitreeGo2ParkourStudentPPORunnerCfg(ParkourRslRlOnPolicyRunnerCfg):
     save_interval = 100
     experiment_name = "unitree_go2_parkour"
     empirical_normalization = False
+    # Disable resume for rough terrain training
+    resume: bool = False
+    load_run: str | None = None
+    load_checkpoint: str | None = None
     policy = ParkourRslRlPpoActorCriticCfg(
         init_noise_std=1.0,
         actor_hidden_dims=[512, 256, 128],

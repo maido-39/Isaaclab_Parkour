@@ -82,7 +82,11 @@ class PPOWithExtractor(PPO):
         if self.train_with_estimated_states:
             obs_est = obs.clone()
             priv_states_estimated = self.estimator(obs_est[:, :self.num_prop])
-            obs_est[:, self.num_prop+self.num_scan:self.num_prop+self.num_scan+self.priv_states_dim] = priv_states_estimated
+            # Check if observation tensor has space for privileged states
+            expected_end_idx = self.num_prop + self.num_scan + self.priv_states_dim
+            if obs_est.shape[1] >= expected_end_idx:
+                obs_est[:, self.num_prop+self.num_scan:expected_end_idx] = priv_states_estimated
+            # If no space for privileged states, skip estimation (for rough terrain)
             self.transition.actions = self.policy.act(obs_est, hist_encoding).detach()
         else:
             self.transition.actions = self.policy.act(obs, hist_encoding).detach()
@@ -189,7 +193,13 @@ class PPOWithExtractor(PPO):
 
             # Estimator
             priv_states_predicted = self.estimator(obs_batch[:, :self.num_prop])  # obs in batch is with true priv_states
-            estimator_loss = (priv_states_predicted - obs_batch[:, self.num_prop+self.num_scan:self.num_prop+self.num_scan+self.priv_states_dim]).pow(2).mean()
+            # Check if observation tensor has space for privileged states before computing loss
+            expected_end_idx = self.num_prop + self.num_scan + self.priv_states_dim
+            if obs_batch.shape[1] >= expected_end_idx:
+                estimator_loss = (priv_states_predicted - obs_batch[:, self.num_prop+self.num_scan:expected_end_idx]).pow(2).mean()
+            else:
+                # No privileged states available, use zero loss
+                estimator_loss = torch.tensor(0.0, device=obs_batch.device, requires_grad=True)
             self.estimator_optimizer.zero_grad()
             estimator_loss.backward()
             nn.utils.clip_grad_norm_(self.estimator.parameters(), self.max_grad_norm)
