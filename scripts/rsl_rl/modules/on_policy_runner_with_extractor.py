@@ -332,7 +332,12 @@ class OnPolicyRunnerWithExtractor(OnPolicyRunner):
         ## Recieve observations
         obs, extras = self.env.get_observations()
         additional_obs = {}
-        additional_obs["delta_yaw_ok"] = extras['observations']['delta_yaw_ok'].to(self.device)
+        # Handle missing delta_yaw_ok for rough terrain (not available in standard Isaac Lab observations)
+        if 'delta_yaw_ok' in extras['observations']:
+            additional_obs["delta_yaw_ok"] = extras['observations']['delta_yaw_ok'].to(self.device)
+        else:
+            # Create dummy delta_yaw_ok for rough terrain (always True since no yaw tracking needed)
+            additional_obs["delta_yaw_ok"] = torch.ones(self.env.num_envs, dtype=torch.bool, device=self.device)
         additional_obs["depth_camera"] = extras["observations"]['depth_camera'].to(self.device)
         obs = obs.to(self.device)
 
@@ -360,15 +365,23 @@ class OnPolicyRunnerWithExtractor(OnPolicyRunner):
             for _ in range(self.depth_encoder_cfg['num_steps_per_env']):
                 if self.env.unwrapped.common_step_counter %5 == 0:
                     obs_prop_depth = obs[:, :self.depth_encoder_cfg['num_prop']].clone()
-                    obs_prop_depth[:, 6:8] = 0
+                    # For rough terrain, indices 6:8 are projected_gravity, not yaw, so don't modify them
+                    # obs_prop_depth[:, 6:8] = 0  # Skip this for rough terrain
                     depth_latent_and_yaw = self.alg.depth_encoder(additional_obs["depth_camera"].clone(), obs_prop_depth)  # clone is crucial to avoid in-place operation
                     depth_latent = depth_latent_and_yaw[:, :-2]
                     yaw = 1.5*depth_latent_and_yaw[:, -2:]
-                    yaws_buffer.append(obs[:,6:8].detach() - yaw)
+                    # For rough terrain, we don't have yaw at indices 6:8 (it's projected_gravity)
+                    # So we just use the predicted yaw as reference
+                    yaws_buffer.append(torch.zeros_like(yaw))  # Dummy yaw difference for rough terrain
                 with torch.no_grad():
                     actions_teacher = self.alg.policy.act_inference(obs, hist_encoding=True, scandots_latent=None)
                     delta_yaw_ok_buffer.append(torch.nonzero(additional_obs["delta_yaw_ok"]).size(0) / additional_obs["delta_yaw_ok"].numel())
-                obs[additional_obs["delta_yaw_ok"], 6:8] = yaw.detach()[additional_obs["delta_yaw_ok"]]
+                # For rough terrain, we don't modify projected_gravity (indices 6:8) since it's not yaw-related
+                # Instead, we create a dummy yaw that doesn't interfere with actual observations
+                if additional_obs["delta_yaw_ok"].any():
+                    # Only modify if delta_yaw_ok is True (which is always True for rough terrain)
+                    # But don't actually modify the projected_gravity since it's not yaw information
+                    pass  # Skip yaw modification for rough terrain
                 actions_student = self.alg.depth_actor(obs, hist_encoding=True, scandots_latent=depth_latent)
                 actions_buffer.append(actions_teacher.detach() - actions_student)
                 
@@ -382,7 +395,12 @@ class OnPolicyRunnerWithExtractor(OnPolicyRunner):
                     obs, _, dones, infos = self.env.step(actions_student.detach().to(self.env.device))
                     # Move to device
                     obs, dones = (obs.to(self.device), dones.to(self.device))
-                additional_obs['delta_yaw_ok'] = infos["observations"]['delta_yaw_ok']
+                # Handle missing delta_yaw_ok for rough terrain
+                if 'delta_yaw_ok' in infos["observations"]:
+                    additional_obs['delta_yaw_ok'] = infos["observations"]['delta_yaw_ok']
+                else:
+                    # Create dummy delta_yaw_ok for rough terrain (always True since no yaw tracking needed)
+                    additional_obs['delta_yaw_ok'] = torch.ones(self.env.num_envs, dtype=torch.bool, device=self.device)
                 additional_obs['depth_camera'] = infos["observations"]['depth_camera']
                 # perform normalization
                 obs = self.obs_normalizer(obs)
