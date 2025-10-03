@@ -37,7 +37,7 @@ class ParkourTeacherSceneCfg(ParkourDefaultSceneCfg):
 class UnitreeGo2TeacherParkourEnvCfg(ParkourManagerBasedRLEnvCfg):
     scene: ParkourTeacherSceneCfg = ParkourTeacherSceneCfg(num_envs=6000, env_spacing=1.)
     # Basic settings
-    observations: RoughObservationsCfg = RoughObservationsCfg()
+    observations: RoughTeacherObservationsCfg = RoughTeacherObservationsCfg()
     actions: RoughActionsCfg = RoughActionsCfg()
     commands: RoughCommandsCfg = RoughCommandsCfg()
     # MDP settings

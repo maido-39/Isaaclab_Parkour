@@ -26,7 +26,7 @@ class ParkourStudentSceneCfg(ParkourTeacherSceneCfg):
 class UnitreeGo2StudentParkourEnvCfg(ParkourManagerBasedRLEnvCfg):
     scene: ParkourStudentSceneCfg = ParkourStudentSceneCfg(num_envs=192, env_spacing=1.)
     # Basic settings
-    observations: RoughObservationsCfg = RoughObservationsCfg()
+    observations: RoughStudentObservationsCfg = RoughStudentObservationsCfg()
     actions: RoughActionsCfg = RoughActionsCfg()
     commands: RoughCommandsCfg = RoughCommandsCfg()
     # MDP settings
