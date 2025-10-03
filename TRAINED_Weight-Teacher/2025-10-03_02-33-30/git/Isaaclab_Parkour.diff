@@ -1,0 +1,182 @@
+--- git status ---
+On branch go1-implement
+Your branch is up to date with 'origin/go1-implement'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   parkour_isaaclab/actuators/parkour_actuator_cfg.py
+	modified:   parkour_tasks/parkour_tasks/default_cfg.py
+	modified:   parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/parkour_teacher_cfg.py
+	modified:   parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/rough_mdp_cfg.py
+
+no changes added to commit (use "git add" and/or "git commit -a") 
+
+
+--- git diff ---
+diff --git a/parkour_isaaclab/actuators/parkour_actuator_cfg.py b/parkour_isaaclab/actuators/parkour_actuator_cfg.py
+index 0ea4454..92366e2 100644
+--- a/parkour_isaaclab/actuators/parkour_actuator_cfg.py
++++ b/parkour_isaaclab/actuators/parkour_actuator_cfg.py
+@@ -6,7 +6,7 @@
+ from collections.abc import Iterable
+ 
+ from isaaclab.utils import configclass
+-from isaaclab.actuators.actuator_cfg import DCMotorCfg
++from isaaclab.actuators.actuator_cfg import DCMotorCfg, ActuatorNetMLPCfg
+ from . import parkour_actuator_pd
+ 
+ @configclass
+@@ -16,3 +16,11 @@ class ParkourDCMotorCfg(DCMotorCfg):
+ 
+     saturation_effort: dict[str, float] | None = None
+     """Peak motor force/torque of the electric DC motor (in N-m)."""
++
++
++@configclass  
++class ParkourActuatorNetMLPCfg(ActuatorNetMLPCfg):
++    """Configuration for Go1 MLP-based actuator model for parkour."""
++    
++    # Use Isaac Lab's standard Go1 actuator network
++    # This will be set in the scene configuration
+diff --git a/parkour_tasks/parkour_tasks/default_cfg.py b/parkour_tasks/parkour_tasks/default_cfg.py
+index 1fe40c5..cec387c 100644
+--- a/parkour_tasks/parkour_tasks/default_cfg.py
++++ b/parkour_tasks/parkour_tasks/default_cfg.py
+@@ -1,6 +1,6 @@
+ from isaaclab.scene import InteractiveSceneCfg
+ from isaaclab.assets import ArticulationCfg, AssetBaseCfg
+-from isaaclab_assets.robots.unitree import UNITREE_GO2_CFG  # isort: skip
++from isaaclab_assets.robots.unitree import UNITREE_GO1_CFG  # isort: skip
+ import isaaclab.sim as sim_utils
+ from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR, ISAACLAB_NUCLEUS_DIR
+ from isaaclab.terrains import TerrainImporterCfg
+@@ -11,7 +11,8 @@ from isaaclab.sensors import RayCasterCameraCfg
+ from isaaclab.sensors.ray_caster.patterns import PinholeCameraPatternCfg
+ from isaaclab.envs import ViewerCfg
+ import os, torch 
+-from parkour_isaaclab.actuators.parkour_actuator_cfg import ParkourDCMotorCfg
++from parkour_isaaclab.actuators.parkour_actuator_cfg import ParkourDCMotorCfg, ParkourActuatorNetMLPCfg
++from isaaclab_assets.robots.unitree import GO1_ACTUATOR_CFG
+ 
+ def quat_from_euler_xyz_tuple(roll: torch.Tensor, pitch: torch.Tensor, yaw: torch.Tensor) -> tuple:
+     cy = torch.cos(yaw * 0.5)
+@@ -30,7 +31,7 @@ def quat_from_euler_xyz_tuple(roll: torch.Tensor, pitch: torch.Tensor, yaw: torc
+ 
+ @configclass
+ class ParkourDefaultSceneCfg(InteractiveSceneCfg):
+-    robot: ArticulationCfg = UNITREE_GO2_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
++    robot: ArticulationCfg = UNITREE_GO1_CFG.replace(prim_path="{ENV_REGEX_NS}/Robot")
+     
+     sky_light = AssetBaseCfg(
+         prim_path="/World/skyLight",
+@@ -62,31 +63,12 @@ class ParkourDefaultSceneCfg(InteractiveSceneCfg):
+     )
+     def __post_init__(self):
+         self.robot.spawn.articulation_props.enabled_self_collisions = True
+-        self.robot.actuators['base_legs'] = ParkourDCMotorCfg(
+-            joint_names_expr=[".*_hip_joint", ".*_thigh_joint", ".*_calf_joint"],
+-            effort_limit={
+-                        '.*_hip_joint':35.0,
+-                        '.*_thigh_joint':40.0,
+-                        '.*_calf_joint':40.0,
+-                        },
+-            saturation_effort={
+-                        '.*_hip_joint':35.0,
+-                        '.*_thigh_joint':45.0,
+-                        '.*_calf_joint':45.0,
+-                        },
+-            velocity_limit={
+-                        '.*_hip_joint':52.4,
+-                        '.*_thigh_joint':30.1,
+-                        '.*_calf_joint':30.1,
+-                        },
+-            stiffness=40.0,
+-            damping=1.0,
+-            friction=0.0,
+-        )
++        # Use Go1's MLP-based actuator model (same as Isaac Lab's standard Go1)
++        self.robot.actuators['base_legs'] = GO1_ACTUATOR_CFG
+ 
+ ## we are now using a raycaster based camera, not a pinhole camera. see tail issue https://github.com/isaac-sim/IsaacLab/issues/719
+ CAMERA_CFG = RayCasterCameraCfg( 
+-    prim_path= '{ENV_REGEX_NS}/Robot/base',
++    prim_path= '{ENV_REGEX_NS}/Robot/trunk',
+     data_types=["distance_to_camera"],
+     offset=RayCasterCameraCfg.OffsetCfg(
+         ## Transform camera from robot frame for robot observation
+@@ -108,7 +90,7 @@ CAMERA_CFG = RayCasterCameraCfg(
+ 
+ CAMERA_USD_CFG = AssetBaseCfg(
+     ## Physical robot cam defenition for camera observation
+-    prim_path="{ENV_REGEX_NS}/Robot/base/d435",
++    prim_path="{ENV_REGEX_NS}/Robot/trunk/d435",
+     spawn=sim_utils.UsdFileCfg(usd_path=os.path.join(agents.__path__[0],'d435.usd')),
+     init_state=AssetBaseCfg.InitialStateCfg(
+             pos=(0.33, 0.0, 0.08), 
+diff --git a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/parkour_teacher_cfg.py b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/parkour_teacher_cfg.py
+index 3087045..48a2130 100644
+--- a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/parkour_teacher_cfg.py
++++ b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/parkour_teacher_cfg.py
+@@ -14,7 +14,7 @@ from parkour_tasks.default_cfg import ParkourDefaultSceneCfg, VIEWER
+ class ParkourTeacherSceneCfg(ParkourDefaultSceneCfg):
+     ## To Observation!! how??
+     height_scanner = RayCasterCfg(
+-        prim_path="{ENV_REGEX_NS}/Robot/base",
++        prim_path="{ENV_REGEX_NS}/Robot/trunk",
+         offset=RayCasterCfg.OffsetCfg(pos=(0.375, 0.0, 20.0)),  # Forward offset for camera-like perspective
+         attach_yaw_only=True,
+         pattern_cfg=patterns.GridPatternCfg(resolution=0.15, size=[1.65, 1.5]),  # Keep original: 12x11=132 points for student compatibility
+@@ -35,7 +35,7 @@ class ParkourTeacherSceneCfg(ParkourDefaultSceneCfg):
+ ## 
+ ## Espacially for Teacher Environment Config
+ class UnitreeGo2TeacherParkourEnvCfg(ParkourManagerBasedRLEnvCfg):
+-    scene: ParkourTeacherSceneCfg = ParkourTeacherSceneCfg(num_envs=64, env_spacing=1.)
++    scene: ParkourTeacherSceneCfg = ParkourTeacherSceneCfg(num_envs=6000, env_spacing=1.)
+     # Basic settings
+     observations: RoughObservationsCfg = RoughObservationsCfg()
+     actions: RoughActionsCfg = RoughActionsCfg()
+diff --git a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/rough_mdp_cfg.py b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/rough_mdp_cfg.py
+index 90768a4..59d9a5f 100644
+--- a/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/rough_mdp_cfg.py
++++ b/parkour_tasks/parkour_tasks/extreme_parkour_task/config/go2/rough_mdp_cfg.py
+@@ -126,7 +126,7 @@ class RoughTerminationsCfg:
+     # Terminate if robot base contacts ground
+     base_contact = DoneTerm(
+         func=mdp.illegal_contact,
+-        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="base"), "threshold": 1.0},
++        params={"sensor_cfg": SceneEntityCfg("contact_forces", body_names="trunk"), "threshold": 1.0},  # Go1 uses trunk
+     )
+ 
+ 
+@@ -151,8 +151,8 @@ class RoughEventCfg:
+         func=randomize_rigid_body_mass,
+         mode="startup",
+         params={
+-            "asset_cfg": SceneEntityCfg("robot", body_names="base"),
+-            "mass_distribution_params": (-1.0, 3.0),  # Go2 specific range
++            "asset_cfg": SceneEntityCfg("robot", body_names="trunk"),  # Go1 uses trunk
++            "mass_distribution_params": (-1.0, 3.0),  # Go1 specific range  
+             "operation": "add",
+         },
+     )
+@@ -161,8 +161,8 @@ class RoughEventCfg:
+         func=randomize_rigid_body_mass,
+         mode="startup",
+         params={
+-            "asset_cfg": SceneEntityCfg("robot", body_names="base"),
+-            "mass_distribution_params": (-1.0, 3.0),  # Go2 specific range
++            "asset_cfg": SceneEntityCfg("robot", body_names="trunk"),  # Go1 uses trunk
++            "mass_distribution_params": (-1.0, 3.0),  # Go1 specific range
+             "operation": "add",
+         },
+     )
+@@ -172,7 +172,7 @@ class RoughEventCfg:
+         func=apply_external_force_torque,
+         mode="reset",
+         params={
+-            "asset_cfg": SceneEntityCfg("robot", body_names="base"),
++            "asset_cfg": SceneEntityCfg("robot", body_names="trunk"),  # Go1 uses trunk
+             "force_range": (0.0, 0.0),
+             "torque_range": (-0.0, 0.0),
+         },
