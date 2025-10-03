@@ -22,6 +22,7 @@ from isaaclab.envs.mdp.events import (
 from parkour_isaaclab.envs.mdp.parkour_actions import DelayedJointPositionActionCfg 
 from parkour_isaaclab.envs.mdp import events
 from parkour_isaaclab.envs.mdp.rough_parkour_events import SimpleParkourEventCfg
+from parkour_isaaclab.envs.mdp import observations
 
 
 @configclass
@@ -74,8 +75,34 @@ class RoughObservationsCfg:
         def __post_init__(self):
             self.enable_corruption = True
             self.concatenate_terms = True
+
+    @configclass
+    class DepthCameraPolicyCfg(ObsGroup):
+        """Depth camera observations for student learning."""
+        depth_cam = ObsTerm(
+            func=observations.image_features,
+            params={            
+                "sensor_cfg": SceneEntityCfg("depth_camera"),
+                "resize": (58, 87),
+                "buffer_len": 2,
+                "debug_vis": True
+            },
+        )
+
+    @configclass
+    class DeltaYawOkPolicyCfg(ObsGroup):
+        """Delta yaw ok observations for student learning (dummy for rough terrain)."""
+        deta_yaw_ok = ObsTerm(
+            func=observations.obervation_delta_yaw_ok,
+            params={            
+                "parkour_name": 'base_parkour',  # Use same name as original
+                'threshold': 0.6
+            },
+        )
     
     policy: PolicyCfg = PolicyCfg()
+    depth_camera: DepthCameraPolicyCfg = DepthCameraPolicyCfg()
+    delta_yaw_ok: DeltaYawOkPolicyCfg = DeltaYawOkPolicyCfg()
 
 
 @configclass
