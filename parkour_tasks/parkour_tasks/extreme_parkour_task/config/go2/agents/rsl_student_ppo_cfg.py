@@ -1,11 +1,13 @@
 from parkour_tasks.extreme_parkour_task.config.go2.agents.parkour_rl_cfg import (
 ParkourRslRlOnPolicyRunnerCfg,
 ParkourRslRlPpoActorCriticCfg,
-ParkourRslRlActorCfg,
-ParkourRslRlStateHistEncoderCfg,
-ParkourRslRlEstimatorCfg,
 ParkourRslRlDistillationAlgorithmCfg,
 ParkourRslRlDepthEncoderCfg
+)
+from parkour_tasks.extreme_parkour_task.config.go2.agents.rsl_teacher_ppo_cfg import (
+RoughTerrainRslRlActorCfg,
+RoughTerrainRslRlStateHistEncoderCfg,
+RoughTerrainRslRlEstimatorCfg
 )
 from isaaclab.utils import configclass
 
@@ -16,10 +18,10 @@ class UnitreeGo2ParkourStudentPPORunnerCfg(ParkourRslRlOnPolicyRunnerCfg):
     save_interval = 100
     experiment_name = "unitree_go2_parkour"
     empirical_normalization = False
-    # Disable resume for rough terrain training
-    resume: bool = False
-    load_run: str | None = None
-    load_checkpoint: str | None = None
+    # Enable resume to load teacher checkpoint for distillation
+    resume: bool = True
+    load_run: str = "*"  # Find any run directory
+    load_checkpoint: str = "model_*.pt"  # Find any model checkpoint
     policy = ParkourRslRlPpoActorCriticCfg(
         init_noise_std=1.0,
         actor_hidden_dims=[512, 256, 128],
@@ -27,14 +29,14 @@ class UnitreeGo2ParkourStudentPPORunnerCfg(ParkourRslRlOnPolicyRunnerCfg):
         scan_encoder_dims = [128, 64, 32],
         priv_encoder_dims = [64, 20],
         activation="elu",
-        actor = ParkourRslRlActorCfg(
+        actor = RoughTerrainRslRlActorCfg(
             class_name = "Actor",
-            state_history_encoder = ParkourRslRlStateHistEncoderCfg(
+            state_history_encoder = RoughTerrainRslRlStateHistEncoderCfg(
                 class_name = "StateHistoryEncoder" 
             )
         )
     )
-    estimator = ParkourRslRlEstimatorCfg(
+    estimator = RoughTerrainRslRlEstimatorCfg(
             hidden_dims = [128, 64]
     )
     depth_encoder = ParkourRslRlDepthEncoderCfg(

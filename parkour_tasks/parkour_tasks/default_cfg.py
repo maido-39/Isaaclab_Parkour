@@ -49,15 +49,15 @@ class ParkourDefaultSceneCfg(InteractiveSceneCfg):
         max_init_terrain_level=2,
         collision_group=-1,
         physics_material=sim_utils.RigidBodyMaterialCfg(
-            friction_combine_mode="average",
-            restitution_combine_mode="average",
+            friction_combine_mode="multiply",
+            restitution_combine_mode="multiply",
             static_friction=1.0,
             dynamic_friction=1.0,
         ),
         visual_material=sim_utils.MdlFileCfg(
-            mdl_path=f"{ISAACLAB_NUCLEUS_DIR}/Materials/TilesMarbleSpiderWhiteBrickBondHoned/TilesMarbleSpiderWhiteBrickBondHoned.mdl",
+            mdl_path=f"{NVIDIA_NUCLEUS_DIR}/Materials/Base/Architecture/Shingles_01.mdl",
             project_uvw=True,
-            texture_scale=(0.25, 0.25),
+            texture_scale=(1.0, 1.0),
         ),
         debug_vis=False,
     )
