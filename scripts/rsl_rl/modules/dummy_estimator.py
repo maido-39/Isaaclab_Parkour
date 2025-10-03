@@ -33,6 +33,21 @@ class DummyEstimator(nn.Module):
         # Use dummy_param to ensure gradients are tracked
         return torch.zeros(batch_size, 0, device=device) + self.dummy_param * 0
     
+    def inference(self, x: torch.Tensor) -> torch.Tensor:
+        """Inference method for deployment/playback.
+        
+        Args:
+            x: Input tensor with shape (batch_size, input_dim)
+            
+        Returns:
+            Zero tensor with shape (batch_size, 0) - no privileged states for rough terrain
+        """
+        batch_size = x.shape[0]
+        device = x.device
+        # Return empty tensor since rough terrain has no privileged states
+        # No gradients needed for inference
+        return torch.zeros(batch_size, 0, device=device)
+    
     def to(self, device):
         """Move module to device."""
         return super().to(device)
