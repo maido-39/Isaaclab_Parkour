@@ -20,8 +20,9 @@ class UnitreeGo2ParkourStudentPPORunnerCfg(ParkourRslRlOnPolicyRunnerCfg):
     empirical_normalization = False
     # Enable resume to load teacher checkpoint for distillation
     resume: bool = True
-    load_run: str = "*"  # Find any run directory
-    load_checkpoint: str = "model_*.pt"  # Find any model checkpoint
+    # load_run and load_checkpoint inherit correct defaults from RslRlOnPolicyRunnerCfg:
+    # load_run: str = ".*" (valid regex)
+    # load_checkpoint: str = "model_.*.pt" (valid regex)
     policy = ParkourRslRlPpoActorCriticCfg(
         init_noise_std=1.0,
         actor_hidden_dims=[512, 256, 128],
