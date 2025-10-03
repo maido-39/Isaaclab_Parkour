@@ -55,9 +55,9 @@ class ParkourDefaultSceneCfg(InteractiveSceneCfg):
             dynamic_friction=1.0,
         ),
         visual_material=sim_utils.MdlFileCfg(
-            mdl_path=f"{ISAAC_NUCLEUS_DIR}/Materials/Base/Architecture/Shingles_01.mdl",
+            mdl_path=f"{ISAACLAB_NUCLEUS_DIR}/Materials/TilesMarbleSpiderWhiteBrickBondHoned/TilesMarbleSpiderWhiteBrickBondHoned.mdl",
             project_uvw=True,
-            texture_scale=(1.0, 1.0),
+            texture_scale=(0.25, 0.25),  # Smaller scale for better appearance on rough terrain
         ),
         debug_vis=False,
     )
